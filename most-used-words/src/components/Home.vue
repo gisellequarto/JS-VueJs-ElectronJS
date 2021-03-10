@@ -41,7 +41,7 @@ export default {
       ipcRenderer.send("process-subtitles", this.files);
 
       ipcRenderer.on("process-subtitles", (event, resp) => {
-        this.groupedWords = resp;
+        this.groupedWords = resp
       });
     },
   },
