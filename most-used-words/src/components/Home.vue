@@ -51,7 +51,7 @@ export default {
 
 <style>
 .home {
-  background-color: #d79922;
+  background-color: #3c8b7c;
 }
 .pills {
   display: flex;

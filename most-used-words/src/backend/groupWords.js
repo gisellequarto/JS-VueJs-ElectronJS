@@ -1,9 +1,6 @@
 module.exports = words => {
     return new Promise((resolver, reject) => {
         try {
-            // ['ana', 'ana', 'ana', 'bia', 'bia']
-            // { ana: 3, bia: 2 }
-            // ['ana', 'bia']
 
             const groupedWords = words.reduce((obj, word) => {
                 if (obj[word]) {

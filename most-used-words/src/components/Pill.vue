@@ -16,8 +16,8 @@ export default {
   margin: 10px;
   height: 55px;
   border-radius: 30px;
-  background-color: #F13C20;
-  color: #efe2ba;
+  background-color: #e6d831;
+  color: #2a2a2a;
   font-size: 1.3rem;
   font-weight: bold;
   display: flex;
@@ -35,7 +35,7 @@ export default {
   width: 35px;
   border-radius: 18px;
   background-color: #EFE2BA;
-  color: #F13C20;
+  color: #2a2a2a;
   font-size: 14px;
   display: flex;
   justify-content: center;
