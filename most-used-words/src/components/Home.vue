@@ -18,8 +18,9 @@
 
 <script>
 import Pill from "./Pill";
+import { ipcRenderer } from 'electron';
 
-export default {
+export default {  
   components: { Pill },
   data: function () {
     return {
@@ -34,6 +35,11 @@ export default {
   methods: {
       processSubtitles() {
           console.log(this.files);
+
+          ipcRenderer.send('process-subtitles', 'ping');
+          ipcRenderer.on('process-subtitles', (event, resp) => {
+            console.log(resp)
+          })
       }
   }
 };
