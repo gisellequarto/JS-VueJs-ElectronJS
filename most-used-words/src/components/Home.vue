@@ -41,7 +41,7 @@ export default {
 
 <style>
 .home {
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background-color: #D79922;
 }
 .pills {
   display: flex;
