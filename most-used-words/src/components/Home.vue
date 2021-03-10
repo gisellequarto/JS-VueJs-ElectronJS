@@ -1,16 +1,24 @@
 <template>
   <v-container class="home" fluid>
-      <v-form>
-          <v-file-input label="Upload Subtitles"
-            prepend-icon="mdi-message-text"
-            append-icon="mdi-send"
-            outlined multiple chips v-model="files"
-            @click:append="processSubtitles"/>
-      </v-form>
+    <v-form>
+      <v-file-input
+        label="Upload Subtitles"
+        prepend-icon="mdi-message-text"
+        append-icon="mdi-send"
+        outlined
+        multiple
+        chips
+        v-model="files"
+        @click:append="processSubtitles"
+      />
+    </v-form>
 
     <div class="pills">
-      <Pill v-for="word in groupedWords" :key="word.name"
-        :name="word.name" :amount="word.amount"
+      <Pill
+        v-for="word in groupedWords"
+        :key="word.name"
+        :name="word.name"
+        :amount="word.amount"
       />
     </div>
   </v-container>
@@ -18,41 +26,35 @@
 
 <script>
 import Pill from "./Pill";
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from "electron";
 
-export default {  
+export default {
   components: { Pill },
   data: function () {
     return {
-        files: [],
-        groupedWords: [
-            { name: "i", amount: 1234 },
-            { name: "you", amount: 900 },
-            { name: "he", amount: 853 },
-      ],
+      files: [],
+      groupedWords: [],
     };
   },
   methods: {
-      processSubtitles() {
-          console.log(this.files);
+    processSubtitles() {
+      ipcRenderer.send("process-subtitles", this.files);
 
-          ipcRenderer.send('process-subtitles', 'ping');
-          ipcRenderer.on('process-subtitles', (event, resp) => {
-            console.log(resp)
-          })
-      }
-  }
+      ipcRenderer.on("process-subtitles", (event, resp) => {
+        this.groupedWords = resp;
+      });
+    },
+  },
 };
 </script>
 
 <style>
 .home {
-    background-color: #D79922;
+  background-color: #d79922;
 }
 .pills {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
- </style>
+</style>
