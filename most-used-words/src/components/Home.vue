@@ -1,26 +1,52 @@
 <template>
-  <v-container fluid>
-      <div>
-          
-      </div>
+  <v-container class="home" fluid>
+      <v-form>
+          <v-file-input label="Upload Subtitles"
+            prepend-icon="mdi-message-text"
+            append-icon="mdi-send"
+            outlined multiple chips v-model="files"
+            @click:append="processSubtitles"/>
+      </v-form>
+
+    <div class="pills">
+      <Pill v-for="word in groupedWords" :key="word.name"
+        :name="word.name" :amount="word.amount"
+      />
+    </div>
   </v-container>
 </template>
 
 <script>
-export default {
+import Pill from "./Pill";
 
-    data: function() {
-        return {
-            groupedWords: [
-                {name: 'i', amount: 1234},
-                {name: 'you', amount: 900},
-                {name: 'he', amount: 853},
-            ]
-        }
-    }
-}
+export default {
+  components: { Pill },
+  data: function () {
+    return {
+        files: [],
+        groupedWords: [
+            { name: "i", amount: 1234 },
+            { name: "you", amount: 900 },
+            { name: "he", amount: 853 },
+      ],
+    };
+  },
+  methods: {
+      processSubtitles() {
+          console.log(this.files);
+      }
+  }
+};
 </script>
 
 <style>
+.home {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-</style>
+ </style>
